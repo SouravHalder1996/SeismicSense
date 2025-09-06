@@ -1,0 +1,9 @@
+requests
+PyYAML
+pandas
+ipykernel
+psycopg2
+numpy
+sqlparse
+streamlit
+scikit-learn

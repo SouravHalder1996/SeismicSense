@@ -1,0 +1,46 @@
+db:
+  dbname: "seismicsense_db"
+  user: "seismicsense_user"
+  password: "1996"
+  host: "localhost"
+  port: "5432"
+
+usgs:
+  QUERY_API_URL: "https://earthquake.usgs.gov/fdsnws/event/1/query"
+  COUNT_API_URL: "https://earthquake.usgs.gov/fdsnws/event/1/count"
+  delta_days: 7
+  full_load: false
+  format: "geojson"
+  limit: 20000
+  paths:
+    ingestion_delta_folder: "data/ingestion/USGS_Earthquake/delta/"
+    ingestion_archive_folder: "data/ingestion/USGS_Earthquake/archive/"
+
+nasa_power:
+  BASE_URL: "https://power.larc.nasa.gov/api/temporal/daily/point"
+  params:
+    parameters: "T2M,T2M_MAX,T2M_MIN,TS,PRECTOT,RH2M,QV2M,WS2M,WD2M,PS,ALLSKY_SFC_SW_DWN,CLRSKY_SFC_SW_DWN,TOA_SW_DWN,CLOUD_AMT,TQV,ALLSKY_SFC_LW_DWN,CLRSKY_SFC_LW_DWN,T2MDEW"
+    community: "AG"
+    format: "JSON"
+  delta_days: 3
+  temporal_window: 15
+  full_load: false
+  paths:
+    ingestion_delta_folder: "data/ingestion/NASA_POWER/delta/"
+    ingestion_archive_folder: "data/ingestion/NASA_POWER/archive/"
+
+noaa_tide:
+  STATIONS_API_URL: "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json"
+  DATA_API_URL: "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
+  products:
+    - "water_level"
+    - "predictions"
+  datum: "MSL"
+  time_zone: "gmt"
+  units: "metric"
+  format: "json"
+  delta_days: 7
+  full_load: false
+  paths:
+    ingestion_delta_folder: "data/ingestion/NOAA_TIDE/delta/"
+    ingestion_archive_folder: "data/ingestion/NOAA_TIDE/archive/"

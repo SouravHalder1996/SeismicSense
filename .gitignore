@@ -1,0 +1,6 @@
+.seismic-sense/
+logs/
+data/
+.env
+experiments/
+__pycache__/
