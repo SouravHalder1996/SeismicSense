@@ -1,0 +1,46 @@
+CREATE TABLE IF NOT EXISTS dm_t_usgs_earthquake_fact (
+    event_id TEXT NOT NULL,
+    latitude NUMERIC,
+    longitude NUMERIC,
+    depth_km NUMERIC,
+    magnitude NUMERIC,
+    magnitude_type TEXT,
+    place_name TEXT,
+    event_time_utc TIMESTAMP,
+    event_time_ist TIMESTAMP,
+    updated_time_utc TIMESTAMP,
+    updated_time_ist TIMESTAMP,
+    url TEXT,
+    detail_url TEXT,
+    felt_reports INTEGER,
+    community_intensity REAL,
+    modified_mercalli_intensity REAL,
+    alert_level TEXT,
+    status TEXT,
+    tsunami BOOLEAN,
+    significance INTEGER,
+    network TEXT,
+    network_name TEXT,
+    network_event_code TEXT,
+    number_of_stations INTEGER,
+    distance_to_nearest_station REAL,
+    rms REAL,
+    azimuthal_gap REAL,
+    event_type TEXT,
+    -- Audit Columns
+    dm_valid_from DATE NOT NULL,
+    dm_valid_to DATE NOT NULL,
+    dm_current_status BOOLEAN NOT NULL,
+    dm_current_version INT NOT NULL,
+    dm_ingested_time TIMESTAMP NOT NULL,
+    dm_updated_time TIMESTAMP NOT NULL,
+    dm_updated_by TEXT NOT NULL,
+    dm_hash_key TEXT,
+    dm_source_filename TEXT,
+    dm_source_system_code TEXT NOT NULL,
+    PRIMARY KEY (event_id, dm_current_version)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS uq_event_id_current
+ON dm_t_usgs_earthquake_fact (event_id)
+WHERE dm_current_status = TRUE;

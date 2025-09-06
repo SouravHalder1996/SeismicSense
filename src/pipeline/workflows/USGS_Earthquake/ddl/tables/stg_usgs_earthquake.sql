@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS stg_usgs_earthquake;
+
+CREATE TABLE stg_usgs_earthquake (
+    quake_id                         TEXT,
+    latitude                         DOUBLE PRECISION,
+    longitude                        DOUBLE PRECISION,
+    depth_km                         DOUBLE PRECISION,
+    magnitude                        REAL,
+    magnitude_type                   TEXT,
+    place_name                       TEXT,
+    event_time                       BIGINT,
+    updated_time                     BIGINT,
+    url                              TEXT,
+    detail_url                       TEXT,
+    felt_reports                     REAL,
+    community_intensity              REAL,
+    modified_mercalli_intensity      REAL,
+    alert_level                      TEXT,
+    status                           TEXT,
+    tsunami                          INTEGER,
+    significance                     INTEGER,
+    network                          TEXT,
+    network_event_code               TEXT,
+    number_of_stations               REAL,
+    distance_to_nearest_station      REAL,
+    rms                              REAL,
+    azimuthal_gap                    REAL,
+    event_type                       TEXT,
+    source_file_name                 TEXT
+);
